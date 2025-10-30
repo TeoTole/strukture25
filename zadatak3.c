@@ -1,10 +1,10 @@
 /*
-2. Definirati strukturu osoba (ime, prezime, godina roğenja) i napisati program koji:
-A. dinamièki dodaje novi element na poèetak liste,
+2. Definirati strukturu osoba (ime, prezime, godina roÃ°enja) i napisati program koji:
+A. dinamiÄki dodaje novi element na poÄetak liste,
 B. ispisuje listu,
-C. dinamièki dodaje novi element na kraj liste,
+C. dinamiÄki dodaje novi element na kraj liste,
 D. pronalazi element u listi (po prezimenu),
-E. briše odreğeni element iz liste,
+E. briÅ¡e odreÄ‘eni element iz liste,
 U zadatku se ne smiju koristiti globalne varijable.
 */
 
@@ -44,7 +44,7 @@ int sortBySurname(Position head);
 int writeToFile(Position head, const char* filename);
 int readFromFile(Position* head, const char* filename);
 
-/* Pomoæna: oslobağanje cijele liste */
+/* PomoÄ‡na: oslobaÄ‘anje cijele liste */
 void freeList(Position* head);
 
 int main() {
@@ -87,7 +87,7 @@ int main() {
 	printf("\nAfter deleting surname Ivic:\n");
 	printList(head);
 
-	/* èitanje iz datoteke (prvo oèistimo listu) */
+	/* Äitanje iz datoteke (prvo oÄistimo listu) */
 	if (readFromFile(&head, "people.txt") != 0) {
 		printf("Error reading from file.\n");
 	}
@@ -103,7 +103,7 @@ int main() {
 }
 
 
-/* Funkcija za dodavanje elementa na poèetak liste */
+/* Funkcija za dodavanje elementa na poÄetak liste */
 int addToBeginning(Position* head, const char* name, const char* surname, int birthYear) {
 
 	Position newPerson = (Position)malloc(sizeof(_Person));
@@ -114,11 +114,11 @@ int addToBeginning(Position* head, const char* name, const char* surname, int bi
 	strcpy(newPerson->surname, surname);
 	newPerson->birthYear = birthYear;
 
-	/* Postavljanje novog elementa na poèetak */
+	/* Postavljanje novog elementa na poÄetak */
 	newPerson->next = *head;
 	*head = newPerson;
 
-	return 0;// uspješno dodano
+	return 0;// uspjeÅ¡no dodano
 }
 
 /* Funkcija za ispis liste */
@@ -169,7 +169,7 @@ int addToEnd(Position* head, const char* name, const char* surname, int birthYea
 	return 0;
 }
 
-/* Funkcija za pronalaenje osobe po prezimenu */
+/* Funkcija za pronalaÅ¾enje osobe po prezimenu */
 Position findBySurname(Position head, const char* surname) {
 
 	Position temp = head;
@@ -215,14 +215,14 @@ int deleteBySurname(Position* head, const char* surname) {
 }
 /*
 3. Prethodnom zadatku dodati funkcije:
-A. dinamièki dodaje novi element iza odreğenog elementa,
-B. dinamièki dodaje novi element ispred odreğenog elementa,
+A. dinamiÄki dodaje novi element iza odreÄ‘enog elementa,
+B. dinamiÄki dodaje novi element ispred odreÄ‘enog elementa,
 C. sortira listu po prezimenima osoba,
 D. upisuje listu u datoteku,
-E. èita listu iz datoteke.
+E. Äita listu iz datoteke.
 */
 
-/* Pomoæna funkcija: alocira i postavlja strukturu osobe */
+/* PomoÄ‡na funkcija: alocira i postavlja strukturu osobe */
 
 Position createPerson(const char* name, const char* surname, int birthYear) {
 
@@ -242,7 +242,7 @@ Position createPerson(const char* name, const char* surname, int birthYear) {
 
 }
 
-/* Pomoæna: oslobağa cijelu listu i postavlja head na NULL */
+/* PomoÄ‡na: oslobaÄ‘a cijelu listu i postavlja head na NULL */
 
 void freeList(Position* head) {
 	Position temp;
@@ -254,7 +254,7 @@ void freeList(Position* head) {
 }
 
 /* A. addAfter - dodaje novi element iza elementa koji ima targetSurname
-   Vrati 0 ako uspješno, ELEMENT_NOT_FOUND ako cilj nije pronağen, ili MEMORY_ALLOCATION_FAILED. */
+   Vrati 0 ako uspjeÅ¡no, ELEMENT_NOT_FOUND ako cilj nije pronaÄ‘en, ili MEMORY_ALLOCATION_FAILED. */
 
 int addAfter(Position head, const char* targetSurname, const char* name, const char* surname, int birthYear) {
 
@@ -286,7 +286,7 @@ int addAfter(Position head, const char* targetSurname, const char* name, const c
 }
 
 /* B. addBefore - dodaje novi element ispred elementa koji ima targetSurname
-   Buduæi da nemamo globalni head, trebamo pokazivaè na head (Position*). */
+   BuduÄ‡i da nemamo globalni head, trebamo pokazivaÄ na head (Position*). */
 
 int addBefore(Position *head, const char* targetSurname, const char* name, const char* surname, int birthYear) {
 
@@ -304,9 +304,9 @@ int addBefore(Position *head, const char* targetSurname, const char* name, const
 		curr = curr->next;
 	}
 	if (curr == NULL) {
-		return ELEMENT_NOT_FOUND;/* cilj nije pronağen */
+		return ELEMENT_NOT_FOUND;/* cilj nije pronaÄ‘en */
 	}
-	/* umetanje izmeğu prev i curr */
+	/* umetanje izmeÄ‘u prev i curr */
 	Position newPerson = createPerson(name, surname, birthYear);
 	if (newPerson == NULL) {
 		return MEMORY_ALLOCATION_FAILED;
@@ -320,21 +320,21 @@ int addBefore(Position *head, const char* targetSurname, const char* name, const
 
 int sortBySurname(Position* head) {
 	if (*head == NULL || (*head)->next == NULL)
-		return 0; // nema što sortirati
+		return 0; // nema Å¡to sortirati
 
 	int swapped;
 	Position end = NULL;
 
 	do {
 		swapped = 0;
-		Position* p = head; // pokazivaè NA pokazivaè na trenutni èvor
+		Position* p = head; // pokazivaÄ NA pokazivaÄ na trenutni Ävor
 
 		while ((*p)->next != end) {
 			Position a = *p;
 			Position b = a->next;
 
 			if (strcmp(a->surname, b->surname) > 0) {
-				// zamjena pokazivaèa
+				// zamjena pokazivaÃ¨a
 				a->next = b->next;
 				b->next = a;
 				*p = b;
@@ -342,11 +342,11 @@ int sortBySurname(Position* head) {
 				swapped = 1;
 			}
 
-			// pomakni pokazivaè "p" na sljedeæu vezu
+			// pomakni pokazivaÄ "p" na sljedeÄ‡u vezu
 			p = &((*p)->next);
 		}
 
-		// "end" oznaèava zadnji veæ sortiran element
+		// "end" oznaÄava zadnji veÄ‡ sortiran element
 		end = *p;
 
 	} while (swapped);
@@ -356,7 +356,7 @@ int sortBySurname(Position* head) {
 
 /* D. writeToFile - upisuje listu u tekstualnu datoteku, svak jedan zapis po redu:
    ime prezime godina
-   Vrati 0 ako ok, FILE_ERROR ako ne moe otvoriti datoteku. */
+   Vrati 0 ako je ok, FILE_ERROR ako ne moÅ¾e otvoriti datoteku. */
 
 int writeToFile(Position head, const char* filename) {
 	
@@ -374,24 +374,24 @@ int writeToFile(Position head, const char* filename) {
 	return 0;
 }
 
-/* E. readFromFile - èita listu iz tekstualne datoteke iste strukture
-   Prije èitanja oslobağa postojeæu listu da ne bi došlo do curenja memorije.
+/* E. readFromFile - Äita listu iz tekstualne datoteke iste strukture
+   Prije Äitanja oslobaÄ‘a postojeÄ‡u listu da ne bi doÅ¡lo do curenja memorije.
    Svaka linija: ime prezime godina (razmak razdvaja).
-   Vrati 0 ako ok, FILE_ERROR ako ne moe otvoriti datoteku, MEMORY_ALLOCATION_FAILED ako malloc ne uspije. */
+   Vrati 0 ako je ok, FILE_ERROR ako ne moÅ¾e otvoriti datoteku, MEMORY_ALLOCATION_FAILED ako malloc ne uspije. */
 
 int readFromFile(Position* head, const char* filename) {
 	FILE* fp = fopen(filename, "r");
 	if (fp == NULL) {
 		return FILE_ERROR;
 	}
-	/* Oèistimo postojeæu listu */
+	/* OÄistimo postojeÄ‡u listu */
 	freeList(head);
 
 	char name[MAX_LENGTH];
 	char surname[MAX_LENGTH];
 	int year;
 
-	/* èitamo dok format odgovara */
+	/* Äitamo dok format odgovara */
 	while (fscanf(fp, "%s %s %d", name, surname, &year) == 3) {
 		if (addToEnd(head, name, surname, year) == MEMORY_ALLOCATION_FAILED) {
 			fclose(fp);
